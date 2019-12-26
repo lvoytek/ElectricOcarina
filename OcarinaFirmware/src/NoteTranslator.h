@@ -45,5 +45,4 @@ public:
     static Note translate(uint16_t coveredHoles);
 };
 
-NoteTranslator Translation;
 #endif

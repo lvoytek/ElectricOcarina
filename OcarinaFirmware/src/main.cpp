@@ -12,13 +12,18 @@
 
 #include <Arduino.h>
 #include "NoteTranslator.h"
+#include "BlowSensor.h"
+
+BlowSensor volumeInput = BlowSensor();
 
 void setup()
 {
-
+    Serial.begin(9600);
+    volumeInput.begin();
 }
 
 void loop()
 {
-
+    Serial.println(volumeInput.getVolume());
+    delay(1000);
 }
