@@ -14,5 +14,39 @@
 #ifndef NOTEPLAYER_H
 #define NOTEPLAYER_H
 
+#include "Ocarina_samples.h"
+#include "NoteTranslator.h"
+
+class NotePlayer
+{
+protected:
+    //The Ocarina note wavetable
+    AudioSynthWavetable ocarinaTable;
+
+    //The I2S Output Stream
+    AudioOutputI2S i2s;
+
+    //Connectors between the ocarina wavetable and I2S
+    AudioConnection conn1 = AudioConnection(ocarinaTable, 0, i2s, 0);
+    AudioConnection conn2 = AudioConnection(ocarinaTable, 0, i2s, 1);
+
+public:
+    /*
+     * Initializes the Ocarina wavetable
+     */
+    void begin();
+
+    /*
+     * Play a note at a given frequency and volume specified by the
+     * enum note type and 0-255 volume value
+     */
+    void playNote(Note note, uint8_t volume);
+
+    /*
+     * Stop any currently playing note
+     */
+    void stop();
+};
+
 
 #endif

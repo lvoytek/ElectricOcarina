@@ -7,3 +7,19 @@
  */
 
 #include "NotePlayer.h"
+
+void NotePlayer::begin()
+{
+    this->ocarinaTable.setInstrument(Ocarina);
+    this->ocarinaTable.amplitude(1);
+}
+
+void NotePlayer::playNote(Note note, uint8_t volume)
+{
+
+}
+
+void NotePlayer::stop()
+{
+    
+}
