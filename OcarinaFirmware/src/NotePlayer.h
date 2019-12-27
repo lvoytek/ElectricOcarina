@@ -20,15 +20,22 @@
 class NotePlayer
 {
 protected:
+    //The audio control system
+    AudioControlSGTL5000 sgtl5000_1;
+
     //The Ocarina note wavetable
     AudioSynthWavetable ocarinaTable;
+
+    //Volume control amp
+    AudioAmplifier amp;
 
     //The I2S Output Stream
     AudioOutputI2S i2s;
 
     //Connectors between the ocarina wavetable and I2S
-    AudioConnection conn1 = AudioConnection(ocarinaTable, 0, i2s, 0);
-    AudioConnection conn2 = AudioConnection(ocarinaTable, 0, i2s, 1);
+    AudioConnection conn0 = AudioConnection(ocarinaTable, amp);
+    AudioConnection conn1 = AudioConnection(amp, 0, i2s, 0);
+    AudioConnection conn2 = AudioConnection(amp, 0, i2s, 1);
 
 public:
     /*

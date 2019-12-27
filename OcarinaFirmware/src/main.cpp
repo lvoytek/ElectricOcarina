@@ -13,17 +13,53 @@
 #include <Arduino.h>
 #include "NoteTranslator.h"
 #include "BlowSensor.h"
+#include "NotePlayer.h"
 
 BlowSensor volumeInput = BlowSensor();
+NotePlayer audio = NotePlayer();
 
 void setup()
 {
     Serial.begin(9600);
     volumeInput.begin();
+    audio.begin();
+
 }
 
 void loop()
 {
-    Serial.println(volumeInput.getVolume());
-    delay(1000);
+    audio.playNote(LOW_C, volumeInput.getVolume());
+    delay(450);
+    audio.stop();
+    delay(50);
+
+    audio.playNote(LOW_C, volumeInput.getVolume());
+    delay(450);
+    audio.stop();
+    delay(50);
+
+    audio.playNote(G, volumeInput.getVolume());
+    delay(450);
+    audio.stop();
+    delay(50);
+
+    audio.playNote(G, volumeInput.getVolume());
+    delay(450);
+    audio.stop();
+    delay(50);
+
+    audio.playNote(A, volumeInput.getVolume());
+    delay(450);
+    audio.stop();
+    delay(50);
+
+    audio.playNote(A, volumeInput.getVolume());
+    delay(450);
+    audio.stop();
+    delay(50);
+
+    audio.playNote(G, volumeInput.getVolume());
+    delay(950);
+    audio.stop();
+    delay(50);
 }

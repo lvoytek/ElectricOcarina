@@ -17,26 +17,24 @@
 
 typedef enum
 {
-    LOW_G = 0,
-    LOW_A,
-    LOW_BFLAT,
-    LOW_B,
-    LOW_C,
+    LOW_C = 0,
     LOW_CSHARP,
     LOW_D,
     LOW_EFLAT,
-    E,
-    F,
+    LOW_E,
+    LOW_F,
     FSHARP,
-    HIGH_G,
+    G,
     GSHARP,
-    HIGH_A,
+    A,
     HIGH_BFLAT,
-    HIGH_B,
+    B,
     HIGH_C,
     HIGH_CSHARP,
     HIGH_D,
-    HIGH_EFLAT
+    HIGH_EFLAT,
+    HIGH_E,
+    HIGH_F
 } Note;
 
 class NoteTranslator
