@@ -14,52 +14,43 @@
 #include "NoteTranslator.h"
 #include "BlowSensor.h"
 #include "NotePlayer.h"
+#include "HoleSensor.h"
 
+NoteTranslator trans = NoteTranslator();
 BlowSensor volumeInput = BlowSensor();
 NotePlayer audio = NotePlayer();
+HoleSensor holes = HoleSensor();
 
 void setup()
 {
-    Serial.begin(9600);
     volumeInput.begin();
+    holes.begin();
     audio.begin();
-
 }
+
+uint16_t lastPress = 65535;
 
 void loop()
 {
-    audio.playNote(LOW_C, volumeInput.getVolume());
-    delay(450);
-    audio.stop();
-    delay(50);
+    uint16_t thisPress = holes.getPressed();
+    uint8_t thisVolume = volumeInput.getVolume();
 
-    audio.playNote(LOW_C, volumeInput.getVolume());
-    delay(450);
-    audio.stop();
-    delay(50);
+    if(thisVolume == 0)
+        audio.stop();
 
-    audio.playNote(G, volumeInput.getVolume());
-    delay(450);
-    audio.stop();
-    delay(50);
-
-    audio.playNote(G, volumeInput.getVolume());
-    delay(450);
-    audio.stop();
-    delay(50);
-
-    audio.playNote(A, volumeInput.getVolume());
-    delay(450);
-    audio.stop();
-    delay(50);
-
-    audio.playNote(A, volumeInput.getVolume());
-    delay(450);
-    audio.stop();
-    delay(50);
-
-    audio.playNote(G, volumeInput.getVolume());
-    delay(950);
-    audio.stop();
-    delay(50);
+    else
+    {
+        if(thisPress != lastPress)
+        {
+            audio.stop();
+            audio.playNote(trans.translate(thisPress), thisVolume);
+        }
+        else
+        {
+            //TODO: Change volume instead of play new
+            audio.playNote(trans.translate(thisPress), thisVolume);
+        }
+        
+    }
+    delay(10);
 }

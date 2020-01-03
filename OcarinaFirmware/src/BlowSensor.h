@@ -57,8 +57,6 @@ public:
      * where 255 is the max volume and 0 is no sound
      */
     uint8_t getVolume();
-
-
 };
 
 #endif
